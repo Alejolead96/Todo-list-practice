@@ -52,7 +52,6 @@ export async function PUT(request: Request, { params }: PropsParams) {
 
   try {
     const schema = yup.object({
-      description: yup.string().optional(),
       completed: yup.boolean().optional(),
     });
 

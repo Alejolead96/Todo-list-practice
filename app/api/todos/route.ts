@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 import * as yup from "yup";
 
 export async function GET() {
-  const todos = await prisma.todo.findMany();
+  const todos = await prisma.todo.findMany({ orderBy: { createdAt: "asc" } });
   return NextResponse.json({ message: "Todo List Search", data: todos });
 }
 
