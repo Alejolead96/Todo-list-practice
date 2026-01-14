@@ -1,13 +1,14 @@
 "use client";
-import { deleteItemsTodo } from "../helpers/api";
+
 import { useRouter } from "next/navigation";
+import { toggleDeleteAllTodos } from "../lib/actions";
 
 export const ButtonDelete = () => {
-  const router = useRouter();
+/*   const router = useRouter(); */
 
   const handleDelete = async () => {
-    await deleteItemsTodo();
-    router.refresh();
+    await toggleDeleteAllTodos();
+/*     router.refresh(); */
   };
 
   return (

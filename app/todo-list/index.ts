@@ -14,4 +14,8 @@ export {
 export { getTodoItems, updateTodoItem, deleteItemsTodo } from "./helpers/api";
 
 //Actions
-/* export { toggleUpdateTodo, toggleCreateTodo } from "./lib/actions"; */
+export {
+  toggleUpdateTodo,
+  toggleCreateTodo,
+  toggleDeleteAllTodos,
+} from "./lib/actions";

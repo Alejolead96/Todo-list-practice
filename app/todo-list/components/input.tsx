@@ -2,14 +2,14 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { createTodoItem } from "../helpers/api";
+import { toggleCreateTodo } from "../lib/actions";
 
 import { FaArrowRight } from "react-icons/fa6";
 import { FaTasks } from "react-icons/fa";
 
 export const Input = () => {
   const [input, setInput] = useState("");
-  const router = useRouter();
+/*   const router = useRouter(); */
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,10 +18,10 @@ export const Input = () => {
       return;
     }
 
-    //TODO: add useOptimistic to update the list without refresh
-    await createTodoItem(input);
+    //TODO: create a method to handle the input
+    await toggleCreateTodo(input);
     setInput("");
-    router.refresh();
+/*     router.refresh(); */
   };
 
   return (
