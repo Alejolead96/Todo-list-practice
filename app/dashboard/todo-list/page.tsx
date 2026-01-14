@@ -1,4 +1,4 @@
-import { Input, ItemList } from "@/app/todo-list";
+import { ButtonDelete, Input, ItemList } from "@/app/todo-list";
 
 export const metadata = {
   title: "Todo-List",
@@ -11,7 +11,10 @@ const page = () => {
       <h1 className="text-3xl font-bold text-gray-600 mb-4">
         List of Todo-Items
       </h1>
-      <Input />
+      <div className="flex justify-between items-center my-6">
+        <ButtonDelete />
+        <Input />
+      </div>
       <ItemList />
     </div>
   );

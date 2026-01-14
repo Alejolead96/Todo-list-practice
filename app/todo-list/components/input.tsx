@@ -1,28 +1,33 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import { createTodoItem } from "../helpers/api";
+
 import { FaArrowRight } from "react-icons/fa6";
 import { FaTasks } from "react-icons/fa";
-import { toggleCreateTodo } from "../lib/actions";
 
 export const Input = () => {
   const [input, setInput] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (input.trim() === "" && input.length < 5) {
       return;
     }
 
-    toggleCreateTodo(input);
+    //TODO: add useOptimistic to update the list without refresh
+    await createTodoItem(input);
     setInput("");
+    router.refresh();
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex self-end mb-6 items-center text-sm bg-white h-12 border pl-3 pr-0.5 rounded border-gray-500/30 w-full max-w-md"
+      className="flex  items-center text-sm bg-white h-12 border pl-3 pr-0.5 rounded border-gray-500/30 w-full max-w-md"
     >
       <FaTasks className="text-gray-500 size-4" />
       <input
@@ -34,7 +39,7 @@ export const Input = () => {
       />
       <button
         type="submit"
-        className="bg-sky-600 px-6 py-3.5 mr-px rounded-sm active:scale-95 transition"
+        className="bg-sky-600 px-6 py-3.5 mr-px rounded-sm active:scale-95 transition cursor-pointer"
       >
         <FaArrowRight className="text-white size-4" />
       </button>

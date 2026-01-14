@@ -1,10 +1,18 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { MdArrowForwardIos } from "react-icons/md";
 import { Item } from "../interfaces/item";
-import { toggleUpdateTodo } from "../lib/actions";
+import { updateTodoItem } from "../helpers/api";
 
 const item = ({ id, description, completed }: Item) => {
+  const router = useRouter();
+
+  const handleUpdate = async (id: string, completed: boolean) => {
+    await updateTodoItem(id, !completed);
+    router.refresh();
+  };
+
   return (
     <div
       className={`flex items-center gap-2 border rounded-full p-1 pr-3 text-sm font-medium  transition 
@@ -15,7 +23,7 @@ const item = ({ id, description, completed }: Item) => {
         }`}
     >
       <button
-        onClick={() => toggleUpdateTodo(id, completed)}
+        onClick={() => handleUpdate(id, completed)}
         className={`${
           completed ? "bg-red-600" : "bg-sky-600"
         } text-white text-xs px-3 py-1 rounded-full cursor-pointer`}

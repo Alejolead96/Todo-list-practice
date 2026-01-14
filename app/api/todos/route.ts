@@ -22,3 +22,13 @@ export async function POST(request: Request) {
 
   return NextResponse.json({ message: "Todo Created", data: todo });
 }
+
+export async function DELETE(request: Request) {
+  await prisma.todo.deleteMany({
+    where: {
+      completed: true,
+    },
+  });
+
+  return NextResponse.json({ message: "Completed Todos Deleted" });
+}

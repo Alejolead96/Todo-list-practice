@@ -37,3 +37,12 @@ export const createTodoItem = async (description: string) => {
     }),
   });
 };
+
+export const deleteItemsTodo = async () => {
+  await fetch("http://localhost:3000/api/todos", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};
